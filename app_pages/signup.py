@@ -7,7 +7,7 @@ def show_signup():
 
     /* Same Background */
     .stApp {
-        background-color: #EFDFBB;
+        background-color:  #E0E0E0;
     }
 
     /* Center card */
@@ -17,34 +17,103 @@ def show_signup():
         margin-top: 130px;
     }
 
-    .signup-card {
-        background-color: #DAC1B1;
-        padding: 45px;
-        border-radius: 12px;
-        width: 420px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-
     .signup-title {
         text-align: center;
-        font-size: 32px;
+        font-size: 40px;
         font-weight: 600;
-        color: #722F37;
+        color:#2B2B2B;
         margin-bottom: 30px;
     }
 
-    /* Input styling */
-    .stTextInput > div > div > input {
-        border-radius: 6px;
-        border: 1px solid #A58570;
-        height: 42px;
+    /* Inputs*/
+    .stTextInput {
+        width: 420px;
+        margin: 0 auto 18px auto;
     }
 
-    /* Button styling */
-    div.stButton > button {
-        background-color: #AC746C;
-        color: white;
+    .stTextInput label {
+        display: block !important;
+        text-align: left;
+        margin-bottom: 6px;
+        color:#2B2B2B !important;
+        width: 420;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .stTextInput > div {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .stTextInput > div > div {
         width: 100%;
+        max-width: 420px;
+    }
+
+    /* Force ALL input container layers */
+    div[data-baseweb="input"],
+    div[data-baseweb="input"] > div {
+        background-color: #2B2B2B !important;
+        border-radius: 6px !important;
+        border: 1px solid #2B2B2B !important;
+    }
+
+    /* Focus + hover states */
+    div[data-baseweb="input"]:focus-within,
+    div[data-baseweb="input"]:hover,
+    div[data-baseweb="input"][data-focus="true"] {
+        background-color: #2B2B2B !important;
+        border: 1px solid #2B2B2B !important;
+        box-shadow: none !important;
+    }
+
+    /* Actual text input */
+    div[data-baseweb="input"] input {
+        background-color: #2B2B2B !important;
+        color: white !important;
+        caret-color: white !important;
+        font-size: 16px !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Override Chrome autofill COMPLETELY */
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px #2B2B2B inset !important;
+        -webkit-text-fill-color: #2B2B2B !important;
+        caret-color: #2B2B2B !important;
+        border: 1px solid #2B2B2B !important;
+    }
+
+    /* Password eye button (BaseWeb icon wrapper) */
+    div[data-baseweb="input"] button,
+    div[data-baseweb="input"] button:hover,
+    div[data-baseweb="input"] button:focus {
+        background-color:#E0E0E0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* SVG icon color */
+    div[data-baseweb="input"] svg {
+        fill: #2B2B2B !important;
+    }
+    
+    /* Button styling */
+    div.stButton {
+        display: flex;
+        justify-content: center;
+    }
+    div.stButton > button {
+        background-color: #2B2B2B;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        width: 500px;
         height: 48px;
         font-size: 16px;
         border-radius: 6px;
@@ -55,15 +124,53 @@ def show_signup():
     }
 
     div.stButton > button:hover {
-        background-color: #7F1F0E;
+        background-color: #2B2B2B;
         color: white;
         transform: translateY(-2px);
+    }
+    
+    /* ===== NAVBAR ===== */
+    .navbar {
+        width: 100%;
+        height: 60px;
+        background-color: #2B2B2B;
+        display: flex;
+        align-items: center;
+        padding-left: 25px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    /* Back link style */
+    .back-link {
+        color: #2B2B2B;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+    .back-link:hover {
+        color:#2B2B2B;
+    }
+
+    /* Push page content below navbar */
+    .page-content {
+        margin-top: 80px;
     }
 
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="signup-container"><div class="signup-card">', unsafe_allow_html=True)
+    # ---- TOP LEFT BACK BUTTON ----
+    col1, col2 = st.columns([1, 8])
+
+    with col1:
+        if st.button("← Back"):
+            st.session_state.page = "home"
+            st.rerun()
 
     st.markdown('<div class="signup-title">Create Account</div>', unsafe_allow_html=True)
 
