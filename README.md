@@ -1,191 +1,217 @@
-SamayNayaya
-AI‑Powered Judicial Case‑Flow Optimization Engine
+# SamayNayaya ⚖️
+**AI-Powered Judicial Case-Flow Optimization Engine**
 
-Overview
-SamayNayaya is a machine learning and optimization driven system designed to reduce judicial backlog by transforming static court calendars into intelligent, adaptive scheduling systems.
+[![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/samaynayaya)](https://github.com/yourusername/samaynayaya/issues)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/samaynayaya)](https://github.com/yourusername/samaynayaya/network)
 
-The platform predicts case duration, estimates adjournment probability, assigns dynamic priority scores, and generates optimized daily court schedules using mathematical programming techniques.
+---
 
-This system improves courtroom utilization, reduces long‑pending cases, and increases daily case disposal without increasing manpower.
+## Table of Contents
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Solution](#solution)
+- [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [How It Works](#how-it-works)
+- [Optimization Objective](#optimization-objective)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Impact](#impact)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-Problem
-Judicial backlogs persist due to:
+---
 
-Static, non‑optimized scheduling
+## Overview
+**SamayNayaya** is an AI-driven judicial scheduling and case-flow optimization system designed to reduce court backlogs. By transforming static calendars into intelligent, adaptive scheduling engines, it leverages **machine learning** and **mathematical optimization** to:  
 
-Poor coordination between judges, lawyers, and courtrooms
+- Predict case duration  
+- Estimate delay probability  
+- Generate optimized schedules  
+- Maximize courtroom utilization  
 
-High adjournment rates
+All this while improving case resolution without additional manpower or infrastructure.
 
-Long‑pending cases receiving inconsistent priority
+---
 
-Lack of predictive insights in calendar planning
+## Problem Statement
+Judicial inefficiencies lead to growing backlogs. Key challenges include:  
 
-The issue is primarily workflow inefficiency, not resource scarcity.
+- Static, non-optimized scheduling systems  
+- Underutilized judges and courtrooms  
+- Frequent adjournments causing cascading delays  
+- Inconsistent prioritization for long-pending cases  
+- Lack of predictive intelligence in scheduling decisions  
 
-Solution Architecture
-1. Data Layer
-Case metadata
+These issues decrease daily case disposals and prolong case resolution timelines.
 
-Judge availability
+---
 
-Courtroom schedules
+## Solution
+**SamayNayaya** solves these challenges by:  
 
-Historical adjournment records
+- Predicting case hearing duration using ML models  
+- Estimating adjournment probability  
+- Assigning dynamic priority scores  
+- Optimizing schedules using **Linear/Integer Programming**  
+- Prioritizing long-pending cases  
+- Maximizing courtroom and judge utilization  
 
-2. Machine Learning Layer
-Hearing Duration Prediction (Regression)
+This results in a **structured, data-driven judicial workflow**.
 
-Adjournment Probability Prediction (Classification)
+---
+
+## Key Features
+| Feature | Description |
+|---------|-------------|
+| ML-based duration prediction | Estimates time required per case |
+| Adjournment risk estimation | Predicts likelihood of delay |
+| Dynamic priority scoring | Assigns priority scores based on case characteristics |
+| Optimization-based calendar | Generates optimized court schedules |
+| Long-pending case prioritization | Ensures older cases progress |
+| Intelligent resource allocation | Efficient judge & courtroom utilization |
+| Improved efficiency | Faster case resolution & reduced backlog |
+
+---
+
+## System Architecture
+Case Database
+│
+▼
+Feature Engine
+│
+▼
+Machine Learning Layer
+
+Duration Prediction Model
+
+Delay Prediction Model
 
 Priority Scoring Engine
+│
+▼
+Optimization Engine
+(Linear / Integer Programming)
+│
+▼
+Scheduling API
+│
+▼
+Dashboard UI
 
-3. Optimization Layer
-Linear / Integer Programming
 
-Constraint-based scheduling
+---
 
-Resource allocation balancing
+## Technology Stack
 
-4. Application Layer
-REST API (FastAPI)
+**Backend:** Python, FastAPI, PostgreSQL, Pandas, NumPy  
+**Machine Learning:** Scikit-learn, XGBoost  
+**Optimization:** Google OR-Tools, Linear Programming, Integer Programming  
+**Frontend:** Streamlit or React  
+**Deployment:** Docker, AWS / Azure  
 
-PostgreSQL database
+---
 
-Dashboard (Streamlit / React)
+## Project Structure
 
-Core Features
-Predictive case duration estimation
-
-Delay risk prediction
-
-Dynamic priority escalation for long‑pending cases
-
-Smart calendar redesign
-
-Balanced case grouping (short, medium, long)
-
-Judge and courtroom utilization maximization
-
-Availability matching without changing assigned lawyers
-
-Tech Stack
-Backend
-
-Python
-
-FastAPI
-
-PostgreSQL
-
-Pandas, NumPy
-
-Machine Learning
-
-Scikit‑learn
-
-XGBoost
-
-Optimization
-
-Google OR‑Tools
-
-Linear Programming
-
-Integer Programming
-
-Frontend
-
-Streamlit / React
-
-Deployment
-
-Docker
-
-AWS / Azure
-
-Project Structure
 samaynayaya/
 │
 ├── data/
-│   └── cases.csv
-│
+│ └── cases.csv
 ├── models/
-│   ├── duration_model.pkl
-│   └── delay_model.pkl
-│
+│ ├── duration_model.pkl
+│ └── delay_model.pkl
 ├── optimizer/
-│   └── scheduler.py
-│
+│ └── scheduler.py
 ├── backend/
-│   └── main.py
-│
+│ └── main.py
 ├── dashboard/
-│   └── app.py
-│
+│ └── app.py
 ├── requirements.txt
 └── README.md
-Workflow
-Ingest case data
 
-Extract structured features
 
-Predict hearing duration
+---
 
-Predict adjournment probability
+## How It Works
+1. Case data is ingested into the system  
+2. Features such as complexity & adjournment history are analyzed  
+3. ML models predict duration & delay probability  
+4. Cases are assigned dynamic priority scores  
+5. Optimization engine generates an efficient schedule  
+6. Dashboard displays the optimized calendar and analytics  
 
-Compute priority score
+---
 
-Apply optimization constraints
+## Optimization Objective
+Maximize overall **case progress** while respecting:  
 
-Generate optimized daily schedule
+- Courtroom availability  
+- Judge availability  
+- Lawyer availability  
+- Time constraints  
+- Case priority  
 
-Display via dashboard
+---
 
-Optimization Objective
-Maximize weighted case progress subject to:
+## Installation
+Clone the repository:
 
-Courtroom time constraints
+```bash
+git clone https://github.com/yourusername/samaynayaya.git
+cd samaynayaya
 
-Judge availability
+Install dependencies:
 
-Lawyer availability
+pip install -r requirements.txt
+Usage
 
-Case continuity requirements
+Run backend server:
 
-Priority scoring
+python backend/main.py
 
-Key Innovations
-Integration of ML with mathematical optimization
+Run the dashboard:
 
-Automatic priority escalation for long‑pending cases
-
-Incremental progress scheduling
-
-Idle resource detection and utilization
-
-Completion‑focused scheduling strategy
-
+streamlit run dashboard/app.py
 Impact
-Increased daily case disposal rate
+
+SamayNayaya enables:
+
+Faster case resolution
 
 Reduced backlog growth
 
-Improved judicial resource utilization
+Improved courtroom efficiency
 
-Structured resolution of legacy cases
+Better judicial resource utilization
 
-Scalable across courts and jurisdictions
+Scalable deployment across multiple courts
 
-Future Enhancements
-Reinforcement learning for adaptive scheduling
+Roadmap
 
-Real‑time dynamic rescheduling
+Real-time scheduling optimization
 
-Cross‑court workload balancing
+Reinforcement learning integration
 
-Policy simulation dashboards
+Multi-court scheduling support
 
-Integration with national e‑Court systems
+Integration with digital court systems
 
+Contributing
 
+Contributions are welcome!
+
+Fork the repository
+
+Create a new branch (git checkout -b feature/YourFeature)
+
+Make your changes and commit (git commit -m 'Add some feature')
+
+Push to the branch (git push origin feature/YourFeature)
+
+Open a Pull Request
