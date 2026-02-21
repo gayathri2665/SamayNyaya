@@ -5,10 +5,10 @@ from ml.predict import predict_case
 import random
 
 # -----------------------------
-# SAFE SESSION INITIALIZATION
+# SAFE SESSION INITIALIZATION (FIXED)
 # -----------------------------
 if "hearings" not in st.session_state:
-    st.session_state["hearings"] = []
+    st.session_state.hearings = []
 
 # -----------------------------
 # MOCK JUDGE DATABASE
@@ -41,7 +41,6 @@ def assign_judge(case_type):
     if not eligible:
         eligible = JUDGES
 
-    # select lowest workload judge
     judge = min(eligible, key=lambda x: x["workload"])
 
     return judge["name"]
@@ -72,7 +71,7 @@ def auto_schedule(case_id, case_type, duration, priority, adj_prob):
         "judge": judge
     }
 
-    st.session_state["hearings"].append(hearing)
+    st.session_state.hearings.append(hearing)
 
 # -----------------------------
 # Judge Reallocation Logic
@@ -141,17 +140,14 @@ def show_scheduling():
 
     st.divider()
 
-    # -----------------------------
     # DISPLAY SCHEDULE
-    # -----------------------------
-    if st.session_state["hearings"]:
+    if st.session_state.hearings:
 
-        df = pd.DataFrame(st.session_state["hearings"])
+        df = pd.DataFrame(st.session_state.hearings)
         grouped = df.groupby("date")
 
         col_main, col_side = st.columns([3, 1])
 
-        # LEFT SIDE
         with col_main:
 
             for date, group in grouped:
@@ -191,13 +187,12 @@ def show_scheduling():
 
                                 new_judge = reassign_judge(row["judge"])
 
-                                st.session_state["hearings"][index]["judge"] = new_judge
+                                st.session_state.hearings[index]["judge"] = new_judge
 
                                 st.success(
                                     f"Judge reassigned to {new_judge}"
                                 )
 
-        # RIGHT SIDE
         with col_side:
 
             st.subheader("Priority Legend")
